@@ -1,0 +1,23 @@
+name: "Setup Hugo"
+description: "Install Hugo (Standard or Extended) in your GitHub Actions workflows."
+author: "Erik Skopp"
+inputs:
+  version:
+    description: "Hugo version to install. Use 'latest' for the latest version."
+    required: false
+    default: "latest"
+  extend:
+    description: "Install Hugo Extended. Use 'true' or 'false'."
+    required: false
+    default: "true"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - "--version=${{ inputs.version }}"
+    - "--extend=${{ inputs.extend }}"
+
+branding:
+  icon: "box"
+  color: "blue"

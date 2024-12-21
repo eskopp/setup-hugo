@@ -1,0 +1,40 @@
+name: Test Dockerfile
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # Set up Docker Buildx (optional for advanced builds)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t setup-hugo-test .
+
+      # Run a container to test the default functionality
+      - name: Test default functionality
+        run: |
+          docker run --rm setup-hugo-test --version=latest --extend=true
+
+      # Test specific version installation
+      - name: Test specific version (Hugo Extended)
+        run: |
+          docker run --rm setup-hugo-test --version=0.118.2 --extend=true
+
+      # Test specific version (Hugo Standard)
+      - name: Test specific version (Hugo Standard)
+        run: |
+          docker run --rm setup-hugo-test --version=0.118.2 --extend=false

@@ -1,0 +1,38 @@
+name: Test Setup Hugo from Marketplace
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-default:
+    name: Test Default Functionality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test default functionality
+        uses: eskopp/setup-hugo@latest
+        with:
+          version: latest
+          extend: true
+
+  test-extended:
+    name: Test Hugo Extended Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Hugo Extended (Version 0.118.2)
+        uses: eskopp/setup-hugo@latest
+        with:
+          version: 0.118.2
+          extend: true
+
+  test-standard:
+    name: Test Hugo Standard Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Hugo Standard (Version 0.118.2)
+        uses: eskopp/setup-hugo@latest
+        with:
+          version: 0.118.2
+          extend: false
