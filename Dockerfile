@@ -7,10 +7,10 @@ RUN apk add --no-cache bash curl tar
 WORKDIR /app
 
 # Bash-Skript kopieren
-COPY install_hugo.sh .
+COPY setup_hugo.sh .
 
 # Skript ausführbar machen
-RUN chmod +x install_hugo.sh
+RUN chmod +x setup_hugo.sh
 
 # Entry Point
 ENTRYPOINT ["./setup_hugo.sh"]
